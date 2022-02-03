@@ -58,7 +58,7 @@ public class UserMapper {
                     System.out.println(phone);
                     System.out.println(address);
 
-                    temp = new User(fname,lname,phone,address);
+                    temp = new User(fname, lname, phone, address);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -69,4 +69,25 @@ public class UserMapper {
         return temp;
     }
 
+    public User editUser() {
+        User user = new User();
+        User tmep = null;
+        try (Connection connection = DBConector.connection()) {
+            String sql = "UPDATE user SET fname=?, lname=?,pw=?,phone=?, address=? WHERE user_id='" + user.getId() + "'";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, user.getName());
+                ps.setString(2, user.getLastName());
+                ps.setString(3, user.getPassword());
+                ps.setString(4, user.getPhone());
+                ps.setString(5, user.getAdress());
+                ps.executeUpdate();
+
+                tmep = new User();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return tmep;
+    }
 }

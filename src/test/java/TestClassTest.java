@@ -59,4 +59,11 @@ class TestClassTest {
         User actual = instance.getUserInfo();
         assertEquals(expected, actual);
     }
+    @Test
+    public void editUser() throws Exception{
+        UserMapper instance = new UserMapper();
+        String expected = "Hans Hansen Hemmelig123 40404040 Rolighedsvej 3";
+        User actual = instance.editUser();
+        assertEquals(expected, actual);
+    }
 }
