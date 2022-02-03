@@ -4,7 +4,7 @@ public class User {
     int id;
     String name;
     String lastName;
-    String adress;
+    String address;
     String phone;
     String password;
 
@@ -14,6 +14,13 @@ public class User {
 
     public User(String name) {
         this.name = name;
+    }
+
+    public User(String name, String lastName, String phone, String address) {
+        this.name = name;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = address;
     }
 
     public int getId() {
@@ -41,11 +48,11 @@ public class User {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getPhone() {
