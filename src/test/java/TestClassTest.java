@@ -1,4 +1,6 @@
 import DBConnector.DBConector;
+import MApper.User;
+import MApper.UserMapper;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
@@ -43,8 +45,11 @@ class TestClassTest {
     }
 
     @Test
-    public void getName() {
-
+    public void getName() throws Exception {
+        UserMapper instance = new UserMapper();
+        String expected = "Hans";
+        User actual = instance.getUsername();
+        assertEquals(expected, actual);
 
     }
 }
