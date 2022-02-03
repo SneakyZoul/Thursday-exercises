@@ -1,26 +1,34 @@
-package MApper;
+package Mapper2;
 
 public class User {
     int id;
-    String name;
-    String lastName;
+    String fname;
+    String lname;
     String address;
     String phone;
-    String password;
+    String pw;
 
     public User() {
 
     }
 
-    public User(String name) {
-        this.name = name;
+    public User(String fname) {
+        this.fname = fname;
     }
 
-    public User(String name, String lastName, String phone, String address) {
-        this.name = name;
-        this.lastName = lastName;
+    public User(String fname, String lname, String phone, String address) {
+        this.fname = fname;
+        this.lname = lname;
         this.phone = phone;
         this.address = address;
+    }
+
+    public User(String fname, String lname, String address, String phone, String pw) {
+        this.fname = fname;
+        this.lname = lname;
+        this.address = address;
+        this.phone = phone;
+        this.pw = pw;
     }
 
     public int getId() {
@@ -32,19 +40,19 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return fname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.fname = name;
     }
 
     public String getLastName() {
-        return lastName;
+        return lname;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lname = lastName;
     }
 
     public String getAdress() {
@@ -64,10 +72,10 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return pw;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.pw = password;
     }
 }

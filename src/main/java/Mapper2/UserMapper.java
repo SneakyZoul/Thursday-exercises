@@ -1,4 +1,5 @@
-package MApper;
+package Mapper2;
+
 
 import DBConnector.DBConector;
 
@@ -10,13 +11,18 @@ import java.sql.SQLException;
 public class UserMapper {
     DBConector dbConector = new DBConector();
 
+    public UserMapper(DBConector dbConector) {
+        this.dbConector = dbConector;
+    }
+
+
     public User getUsername() throws Exception {
         User user = new User();
         User temp = null;
 
         try (Connection connection = DBConector.connection()) {
 
-            String sql = " SELECT * FROM usertable WHERE fname = '" + user.name + "'";
+            String sql = " SELECT * FROM usertable WHERE fname = '" + user.fname + "'";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery(sql);
                 if (rs.next()) {
@@ -41,7 +47,7 @@ public class UserMapper {
 
         try (Connection connection = DBConector.connection()) {
 
-            String sql = " SELECT * FROM usertable WHERE id= '" + user.name + user.lastName + user.password + user.phone + user.address + "'";
+            String sql = " SELECT * FROM usertable WHERE id= '" + user.fname + user.lname + user.pw + user.phone + user.address + "'";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery(sql);
                 if (rs.next()) {
@@ -69,9 +75,8 @@ public class UserMapper {
         return temp;
     }
 
-    public User editUser() {
-        User user = new User();
-        User tmep = null;
+    public void editUser(User user) {
+
         try (Connection connection = DBConector.connection()) {
             String sql = "UPDATE user SET fname=?, lname=?,pw=?,phone=?, address=? WHERE user_id='" + user.getId() + "'";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -83,11 +88,11 @@ public class UserMapper {
                 ps.setString(5, user.getAdress());
                 ps.executeUpdate();
 
-                tmep = new User();
+
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return tmep;
+
     }
 }
