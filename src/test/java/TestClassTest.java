@@ -1,9 +1,7 @@
 import DBConnector.DBConector;
+import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,7 +28,7 @@ class TestClassTest {
             ps.setString(2, "Hansen");
             ps.setString(3, "Hemmelig123");
             ps.setString(4, "40404040");
-            ps.setString(5,"Rolighedsvej 3");
+            ps.setString(5, "Rolighedsvej 3");
             ps.executeUpdate();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -42,5 +40,11 @@ class TestClassTest {
 
     @org.junit.jupiter.api.AfterEach
     void tearDown() {
+    }
+
+    @Test
+    public void getName() {
+
+
     }
 }
