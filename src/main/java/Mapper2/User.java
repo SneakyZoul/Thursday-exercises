@@ -23,7 +23,7 @@ public class User {
         this.address = address;
     }
 
-    public User(String fname, String lname, String address, String phone, String pw) {
+    public User(String fname, String lname,String pw, String phone, String address) {
         this.fname = fname;
         this.lname = lname;
         this.address = address;

@@ -20,5 +20,9 @@ public class Facade {
         User user = new User(fname,lname,pw,address, phone);
         userMapper.editUser(user);
     }
+    public void getUserName(String fname){
+        User user = new User(fname);
+        userMapper.editUser(user);
+    }
 
 }

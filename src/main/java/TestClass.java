@@ -14,4 +14,11 @@ public class TestClass {
         t.editUser("Chris", "Hold", "Tophemmlig", "opppevej 2", "30303030");
         return t;
     }
+    public Facade getName()throws ClassNotFoundException {
+        Facade f = new Facade();
+        f.getUserName("Hans");
+
+       return f;
+    }
+
 }

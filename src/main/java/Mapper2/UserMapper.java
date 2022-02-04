@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserMapper {
     DBConector dbConector = new DBConector();
@@ -16,21 +17,19 @@ public class UserMapper {
     }
 
 
-    public User getUsername() throws Exception {
-        User user = new User();
-        User temp = null;
+    public ArrayList<String> getUserName() throws Exception {
+        ArrayList<String> name = new ArrayList<>();
 
-        try (Connection connection = DBConector.connection()) {
-
-            String sql = " SELECT * FROM usertable WHERE fname = '" + user.fname + "'";
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try {
+            Connection connection = DBConector.connection();
+            String sql = " SELECT fname FROM usertable ";
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery(sql);
-                if (rs.next()) {
+                while(rs.next()) {
                     String fname = rs.getString("fname");
-
-
+                    name.add(fname);
                     System.out.println(fname);
-                    temp = new User(fname);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -38,7 +37,7 @@ public class UserMapper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return temp;
+    return name;
     }
 
     public User getUserInfo() throws Exception {

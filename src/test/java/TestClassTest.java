@@ -1,9 +1,11 @@
 import DBConnector.DBConector;
+import Mapper2.Facade;
 import Mapper2.User;
 import Mapper2.UserMapper;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -41,15 +43,23 @@ class TestClassTest {
     }
 
     @org.junit.jupiter.api.AfterEach
-    void tearDown() {
+    void tearDown() throws SQLException, ClassNotFoundException {
+        Connection connection = DBConector.connection();
+        try {
+            String droptable = "DROP TABLE IF EXISTS `startcode_test`.`usertable`";
+            connection.prepareStatement(droptable).executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void getName() throws Exception {
         DBConector dbConector = new DBConector();
-         UserMapper instance = new UserMapper(dbConector);
-        String expected = "Hans";
-        User actual = instance.getUsername();
+        UserMapper userMapper = new UserMapper(dbConector);
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("Hans");
+        ArrayList<String> actual = userMapper.getUserName();
         assertEquals(expected, actual);
 
     }
