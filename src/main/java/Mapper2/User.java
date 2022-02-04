@@ -1,5 +1,7 @@
 package Mapper2;
 
+import java.util.Objects;
+
 public class User {
     int id;
     String fname;
@@ -10,6 +12,29 @@ public class User {
 
     public User() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(fname, user.fname) && Objects.equals(lname, user.lname) && Objects.equals(address, user.address) && Objects.equals(phone, user.phone);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fname, lname, address, phone);
     }
 
     public User(String fname) {

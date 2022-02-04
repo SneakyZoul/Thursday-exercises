@@ -40,20 +40,20 @@ public class UserMapper {
     return name;
     }
 
-    public User getUserInfo() throws Exception {
-        User user = new User();
+    public User getUserInfo(String name) throws Exception {
         User temp = null;
 
-        try (Connection connection = DBConector.connection()) {
+        try  {
+            Connection connection = DBConector.connection();
+            String sql = "SELECT * FROM usertable WHERE fname = ?";
+            try {
 
-            String sql = " SELECT * FROM usertable WHERE id= '" + user.fname + user.lname + user.pw + user.phone + user.address + "'";
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery(sql);
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1,name);
+                ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    int id = rs.getInt("id");
                     String fname = rs.getString("fname");
                     String lname = rs.getString("lname");
-                    String pw = rs.getString("pw");
                     String phone = rs.getString("phone");
                     String address = rs.getString("address");
 
